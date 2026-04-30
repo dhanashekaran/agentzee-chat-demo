@@ -52,6 +52,7 @@
             aspect-ratio: 9 / 19.5;
             max-height: 850px;
             margin: auto;
+            flex-shrink: 0;
         }
 
         .iphone-frame {
@@ -177,7 +178,14 @@
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col lg:flex-row w-full overflow-x-hidden">
+
+<!-- Left Title Area -->
+<div class="hidden lg:flex flex-1 flex-col justify-center items-end pr-8 xl:pr-16 text-right">
+    <h1 class="text-4xl xl:text-5xl font-extrabold text-gray-800 tracking-tight leading-tight mb-4">
+        Food, Grocery & Beverages<br><span class="text-wa-metaGreen">Cake</span>
+    </h1>
+</div>
 
 <div class="iphone-device">
     <!-- Physical Side Buttons -->
@@ -495,6 +503,27 @@
     </div>
 </div>
 
+<!-- Right Controls Area -->
+<div class="hidden lg:flex flex-1 flex-col justify-center items-start pl-8 xl:pl-16">
+    <div class="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col items-center gap-5 min-w-[180px]">
+        <h3 class="text-gray-800 font-bold text-sm uppercase tracking-widest">Scroll UI</h3>
+        
+        <div class="flex flex-col items-center gap-2 w-full">
+            <label for="scroll-step" class="text-xs text-gray-500 font-semibold uppercase">Step Value (px)</label>
+            <input type="number" id="scroll-step" value="250" class="w-full px-3 py-2 border border-gray-200 bg-gray-50 rounded-xl text-center text-gray-800 font-medium text-base outline-none focus:border-wa-metaGreen focus:ring-2 focus:ring-wa-metaGreen/20 transition-all">
+        </div>
+
+        <div class="flex gap-4 mt-2">
+            <button onclick="scrollChat(-1)" class="bg-white hover:bg-wa-metaGreen hover:text-white text-gray-600 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_4px_14px_0_rgb(0,0,0,0.1)] border border-gray-100" title="Scroll Up">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+            </button>
+            <button onclick="scrollChat(1)" class="bg-white hover:bg-wa-metaGreen hover:text-white text-gray-600 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_4px_14px_0_rgb(0,0,0,0.1)] border border-gray-100" title="Scroll Down">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+        </div>
+    </div>
+</div>
+
 <script>
     /* =========================================
        GEMINI API CONFIGURATION & CHAT LOGIC
@@ -635,6 +664,17 @@
         );
     }
     
+    // Custom Scroll UI Function
+    function scrollChat(direction) {
+        const stepInput = document.getElementById('scroll-step');
+        const stepValue = parseInt(stepInput.value, 10) || 250;
+        
+        chatWindow.scrollBy({
+            top: direction * stepValue,
+            behavior: 'smooth'
+        });
+    }
+
     // Initial scroll
     setTimeout(scrollToBottom, 100);
 </script>

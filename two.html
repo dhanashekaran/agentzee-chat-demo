@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>WhatsApp UI Prototype in iPhone Frame</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -52,6 +52,7 @@
             aspect-ratio: 9 / 19.5;
             max-height: 850px;
             margin: auto;
+            flex-shrink: 0;
         }
 
         .iphone-frame {
@@ -177,7 +178,14 @@
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col lg:flex-row w-full overflow-x-hidden">
+
+<!-- Left Title Area -->
+<div class="hidden lg:flex flex-1 flex-col justify-center items-end pr-8 xl:pr-16 text-right">
+    <h1 class="text-4xl xl:text-5xl font-extrabold text-gray-800 tracking-tight leading-tight mb-4">
+        Beauty & Personal Care<br /><span class="text-wa-metaGreen">Skincare</span>
+    </h1>
+</div>
 
 <div class="iphone-device">
     <!-- Physical Side Buttons -->
@@ -416,6 +424,27 @@
     </div>
 </div>
 
+<!-- Right Controls Area -->
+<div class="hidden lg:flex flex-1 flex-col justify-center items-start pl-8 xl:pl-16">
+    <div class="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col items-center gap-5 min-w-[180px]">
+        <h3 class="text-gray-800 font-bold text-sm uppercase tracking-widest">Scroll UI</h3>
+        
+        <div class="flex flex-col items-center gap-2 w-full">
+            <label for="scroll-step" class="text-xs text-gray-500 font-semibold uppercase">Step Value (px)</label>
+            <input type="number" id="scroll-step" value="250" class="w-full px-3 py-2 border border-gray-200 bg-gray-50 rounded-xl text-center text-gray-800 font-medium text-base outline-none focus:border-wa-metaGreen focus:ring-2 focus:ring-wa-metaGreen/20 transition-all" />
+        </div>
+
+        <div class="flex gap-4 mt-2">
+            <button onclick="scrollChat(-1)" class="bg-white hover:bg-wa-metaGreen hover:text-white text-gray-600 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_4px_14px_0_rgb(0,0,0,0.1)] border border-gray-100" title="Scroll Up">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6" /></svg>
+            </button>
+            <button onclick="scrollChat(1)" class="bg-white hover:bg-wa-metaGreen hover:text-white text-gray-600 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_4px_14px_0_rgb(0,0,0,0.1)] border border-gray-100" title="Scroll Down">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+        </div>
+    </div>
+</div>
+
 <script>
     /* =========================================
        GEMINI API CONFIGURATION & CHAT LOGIC
@@ -451,10 +480,10 @@
     messageInput.addEventListener('input', function() {
         const btn = document.getElementById('send-btn');
         if(this.value.trim() !== '') {
-            btn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" class="fill-current ml-1"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
+            btn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" class="fill-current ml-1"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg>';
         } else {
             // Revert to mic icon if empty
-            btn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" class="fill-current"><path d="M11.999 14.942c2.001 0 3.531-1.53 3.531-3.531V4.35c0-2.001-1.53-3.531-3.531-3.531S8.469 2.349 8.469 4.35v7.061c0 2.001 1.53 3.531 3.53 3.531zm6.238-3.53c0 3.531-2.942 6.002-6.237 6.002s-6.237-2.471-6.237-6.002H3.761c0 4.001 3.178 7.297 7.061 7.885v3.884h2.354v-3.884c3.884-.588 7.061-3.884 7.061-7.885h-2.002z"/></svg>';
+            btn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" class="fill-current"><path d="M11.999 14.942c2.001 0 3.531-1.53 3.531-3.531V4.35c0-2.001-1.53-3.531-3.531-3.531S8.469 2.349 8.469 4.35v7.061c0 2.001 1.53 3.531 3.53 3.531zm6.238-3.53c0 3.531-2.942 6.002-6.237 6.002s-6.237-2.471-6.237-6.002H3.761c0 4.001 3.178 7.297 7.061 7.885v3.884h2.354v-3.884c3.884-.588 7.061-3.884 7.061-7.885h-2.002z" /></svg>';
         }
     });
 
@@ -502,7 +531,6 @@
 
     function appendOutgoingMessage(text) {
         const time = getCurrentTime();
-        // Since it's likely a standalone message, give it a tail.
         const html = `
         <div class="flex flex-col mb-1 mt-2 relative self-end max-w-[85%] z-10">
             <div class="bg-wa-outgoing rounded-[7.5px] rounded-tr-none p-1.5 px-2 shadow-sm text-wa-text message-text relative">
@@ -510,7 +538,7 @@
                 <p>${escapeHTML(text)}</p>
                 <div class="time-meta">
                     ${time} 
-                    <svg viewBox="0 0 16 11" width="16" height="11" class="ml-1 text-wa-blueTick fill-current"><path d="M11.8 1.6L10.4.2 6.1 4.5l-1.9-1.9L2.8 4l4.7 4.7 5.7-5.7zm3.8 0L14.2.2 9.9 4.5l-1.9-1.9L6.6 4l4.7 4.7 5.7-5.7z"/></svg>
+                    <svg viewBox="0 0 16 11" width="16" height="11" class="ml-1 text-wa-blueTick fill-current"><path d="M11.8 1.6L10.4.2 6.1 4.5l-1.9-1.9L2.8 4l4.7 4.7 5.7-5.7zm3.8 0L14.2.2 9.9 4.5l-1.9-1.9L6.6 4l4.7 4.7 5.7-5.7z" /></svg>
                 </div>
                 <div class="clear-both"></div>
             </div>
@@ -522,7 +550,6 @@
 
     function appendIncomingMessage(text) {
         const time = getCurrentTime();
-        // Simple incoming text bubble wrapper
         const html = `
         <div class="flex flex-col mb-1 mt-2 relative self-start max-w-[85%] z-10">
             <div class="bg-wa-incoming rounded-[7.5px] rounded-tl-none p-1.5 px-2 shadow-sm text-wa-text message-text relative">
@@ -558,6 +585,17 @@
         );
     }
     
+    // Custom Scroll UI Function
+    function scrollChat(direction) {
+        const stepInput = document.getElementById('scroll-step');
+        const stepValue = parseInt(stepInput.value, 10) || 250;
+        
+        chatWindow.scrollBy({
+            top: direction * stepValue,
+            behavior: 'smooth'
+        });
+    }
+
     // Initial scroll
     setTimeout(scrollToBottom, 100);
 </script>

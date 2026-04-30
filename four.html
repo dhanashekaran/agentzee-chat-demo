@@ -52,6 +52,7 @@
             aspect-ratio: 9 / 19.5;
             max-height: 850px;
             margin: auto;
+            flex-shrink: 0;
         }
 
         .iphone-frame {
@@ -177,7 +178,14 @@
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col lg:flex-row w-full overflow-x-hidden">
+
+<!-- Left Title Area -->
+<div class="hidden lg:flex flex-1 flex-col justify-center items-end pr-8 xl:pr-16 text-right">
+    <h1 class="text-4xl xl:text-5xl font-extrabold text-gray-800 tracking-tight leading-tight mb-4">
+        Home Decor & Lifestyle<br><span class="text-wa-metaGreen">Night Lamp</span>
+    </h1>
+</div>
 
 <div class="iphone-device">
     <!-- Physical Side Buttons -->
@@ -216,7 +224,7 @@
                     </div>
                 </button>
                 <div class="ml-2 flex-1 cursor-pointer">
-                    <h1 class="text-wa-text font-medium text-[16px] leading-tight">The Boho Nest</h1>
+                    <h1 class="text-wa-text font-medium text-[16px] leading-tight">Home Haven</h1>
                     <p class="text-wa-sub text-[13px]">Luna • Business Account</p>
                 </div>
                 <div class="flex gap-4 text-wa-icon px-2">
@@ -234,13 +242,18 @@
                 <div class="mx-auto w-fit bg-[#FFEEDB] text-wa-icon text-[12px] px-3 py-1 rounded-lg shadow-sm mb-3 mt-1 z-10">
                     TODAY
                 </div>
+                
+                <!-- Script Meta / Trigger -->
+                <div class="mx-auto w-fit bg-[#e1f3fb] text-wa-icon text-[11px] font-medium px-3 py-1.5 rounded-lg shadow-sm mb-3 z-10 text-center max-w-[90%] leading-snug">
+                    Trigger: Customer taps "Aurora Fancy Night Lamp" in Instagram Ad → redirected to WhatsApp
+                </div>
 
                 <!-- Outgoing Customer -->
                 <div class="flex flex-col mb-1 mt-2 relative self-end max-w-[85%] z-10">
                     <div class="bg-wa-outgoing rounded-[7.5px] rounded-tr-none p-1.5 px-2 shadow-sm text-wa-text message-text relative w-[260px]">
                         <svg viewBox="0 0 8 13" width="8" height="13" class="absolute -right-[8px] top-0 text-wa-outgoing fill-current"><path d="M6.467 3.568L0 12.193V1h5.188c1.77 0 2.338 1.156 1.279 2.568z"></path></svg>
-                        <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?w=400&h=400&fit=crop" class="rounded-[6px] mb-1.5 w-full h-[200px] object-cover" alt="Boho Rattan Wall Shelf">
-                        <p>Hi I need to know more about this product? 😊</p>
+                        <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400&h=400&fit=crop" class="rounded-[6px] mb-1.5 w-full h-[200px] object-cover" alt="Aurora Fancy Night Lamp Ad">
+                        <p>Hi! I saw a really pretty night lamp in your Instagram ad - can you tell me more about it? 😊</p>
                         <div class="time-meta">
                             10:40 AM 
                             <svg viewBox="0 0 16 11" width="16" height="11" class="ml-1 text-wa-blueTick fill-current"><path d="M11.8 1.6L10.4.2 6.1 4.5l-1.9-1.9L2.8 4l4.7 4.7 5.7-5.7zm3.8 0L14.2.2 9.9 4.5l-1.9-1.9L6.6 4l4.7 4.7 5.7-5.7z"/></svg>
@@ -253,7 +266,8 @@
                 <div class="flex flex-col mb-0.5 mt-2 relative self-start max-w-[85%] z-10">
                     <div class="bg-wa-incoming rounded-[7.5px] rounded-tl-none p-1.5 px-2 shadow-sm text-wa-text message-text relative">
                         <svg viewBox="0 0 8 13" width="8" height="13" class="absolute -left-[8px] top-0 text-wa-incoming fill-current"><path d="M1.533 3.568L8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z"></path></svg>
-                        <p>Hey! 👋 Welcome to <b>The Boho Nest</b> 🌿<br><br>
+                        <p>Hey! 👋 Welcome to <b>Home Haven</b> 🌿<br>
+                        So glad you reached out! You've got great taste 😍<br>
                         Here's the one from our ad 👇</p>
                         <div class="time-meta">10:40 AM</div>
                         <div class="clear-both"></div>
@@ -263,19 +277,15 @@
                 <!-- Incoming Bot Product Card + Buttons -->
                 <div class="flex flex-col mb-1 relative self-start max-w-[85%] w-[270px] z-10">
                     <div class="bg-wa-incoming rounded-[7.5px] p-1 shadow-sm text-wa-text message-text relative overflow-hidden flex flex-col">
-                        <!-- 3-Image Grid -->
-                        <div class="grid grid-cols-2 gap-1 mb-1">
-                            <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?w=400&h=300&fit=crop" class="col-span-2 rounded-t-[6px] object-cover w-full h-[140px]" alt="Right view">
-                            <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=200&h=200&fit=crop" class="rounded-bl-[6px] object-cover w-full h-[110px]" alt="Top view">
-                            <img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=200&h=200&fit=crop" class="rounded-br-[6px] object-cover w-full h-[110px]" alt="Left view">
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=400&h=300&fit=crop" class="rounded-t-[6px] object-cover w-full h-[160px] mb-1" alt="Aurora Fancy Night Lamp">
                         <div class="px-1.5 pb-2 pt-1">
-                            <p>🛖 <b>Boho Rattan Wall Shelf</b><br><br>
-                            - Material - Natural Rattan & Mango Wood<br>
-                            - Size - 24 x 8 x 6 inches<br>
-                            - Best for - Living room, bedroom & entryway styling<br>
-                            - 💰 Price - <b>₹1,299</b><br>
-                            - 🚚 Free delivery on orders above ₹999<br><br>
+                            <p>🌙 <b>Aurora Fancy Night Lamp</b><br><br>
+                            Type - LED Ambient Mood Lamp<br>
+                            Colours - 7 colour modes with dimmer control<br>
+                            Size - 18 cm height - perfect for bedside or shelves<br>
+                            Best for - Bedroom, living room & gifting<br>
+                            💰 Price - <b>₹899</b><br>
+                            🚚 Free delivery on orders above ₹999<br><br>
                             What would you like to do next?</p>
                             <div class="time-meta">10:40 AM</div>
                             <div class="clear-both"></div>
@@ -283,7 +293,7 @@
                         <!-- Interactive Action Buttons -->
                         <div class="border-t border-wa-divider flex flex-col bg-white">
                             <button class="w-full py-2.5 text-wa-metaGreen font-medium text-[15px] border-b border-wa-divider active:bg-[#f5f6f6] transition-colors">1️⃣ Buy Now</button>
-                            <button class="w-full py-2.5 text-wa-metaGreen font-medium text-[15px] border-b border-wa-divider active:bg-[#f5f6f6] transition-colors">2️⃣ See more sizes / colours</button>
+                            <button class="w-full py-2.5 text-wa-metaGreen font-medium text-[15px] border-b border-wa-divider active:bg-[#f5f6f6] transition-colors">2️⃣ See more variants</button>
                             <button class="w-full py-2.5 text-wa-metaGreen font-medium text-[15px] active:bg-[#f5f6f6] transition-colors">3️⃣ Ask a question</button>
                         </div>
                     </div>
@@ -326,48 +336,32 @@
                     </div>
                 </div>
 
-                <!-- Bot order summary -->
-                <div class="flex flex-col mb-0.5 mt-2 relative self-start max-w-[85%] z-10">
-                    <div class="bg-wa-incoming rounded-[7.5px] rounded-tl-none p-1.5 px-2 shadow-sm text-wa-text message-text relative w-[270px]">
+                <!-- Bot order summary + Pay Button -->
+                <div class="flex flex-col mb-1 mt-2 relative self-start max-w-[85%] w-[280px] z-10">
+                    <div class="bg-wa-incoming rounded-[7.5px] rounded-tl-none shadow-sm text-wa-text message-text relative overflow-hidden flex flex-col">
                         <svg viewBox="0 0 8 13" width="8" height="13" class="absolute -left-[8px] top-0 text-wa-incoming fill-current"><path d="M1.533 3.568L8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z"></path></svg>
-                        <p>Got it! 📍 Here's your order summary -<br><br>
-                        🧾 <b>Order Summary</b><br><br>
-                        📦 Product - Boho Rattan Wall Shelf<br>
-                        🚚 Estimated Delivery - 3-5 business days<br>
-                        📌 Deliver to - 42, Rose Garden Layout, Koramangala, Bangalore - 560034<br>
-                        <span class="text-wa-sub text-[13px]">(Free delivery included)</span><br><br>
-                        <b>Price - ₹1,299</b></p>
-                        <div class="time-meta">10:42 AM</div>
-                        <div class="clear-both"></div>
-                    </div>
-                </div>
-
-                <!-- Bot native payment request -->
-                <div class="flex flex-col mb-1 relative self-start max-w-[85%] w-[270px] z-10">
-                    <div class="bg-wa-incoming rounded-[7.5px] shadow-sm text-wa-text message-text relative p-1 pb-1.5">
-                        <div class="bg-[#f0f2f5] rounded-[6px] p-4 flex flex-col items-center justify-center text-center">
-                            <div class="w-11 h-11 rounded-full bg-wa-metaGreen flex items-center justify-center text-white mb-2 shadow-sm">
-                                <span class="text-xl font-medium font-serif">₹</span>
-                            </div>
-                            <h3 class="text-wa-sub text-[13px] font-medium uppercase tracking-wide">Payment request</h3>
-                            <h2 class="text-[26px] font-bold mt-0 text-wa-text tracking-tight">₹1,299.00</h2>
-                        </div>
-                        <div class="px-1.5 pt-2 pb-0">
-                            <p class="text-wa-text text-[14.5px]">The Boho Nest<br><span class="text-wa-sub text-[13px]">WhatsApp Pay - UPI / Google Pay</span></p>
+                        <div class="p-2">
+                            <p>Got it! 📍 Here's your order summary -<br><br>
+                            🧾 <b>Order Summary</b><br>
+                            Product - Aurora Fancy Night Lamp<br>
+                            Price - ₹899<br>
+                            Delivery - 🆓 Free<br>
+                            Estimated Delivery - 3-5 business days<br>
+                            Deliver to - 42, Rose Garden Layout, Koramangala, Bangalore - 560034<br>
+                            <b>Total - ₹899</b><br><br>
+                            Tap below to pay securely 👇</p>
                             <div class="time-meta">10:42 AM</div>
                             <div class="clear-both"></div>
                         </div>
-                        <div class="px-1.5 pt-2">
-                            <button class="w-full bg-wa-metaGreen text-white font-medium py-[10px] rounded-full text-[15px] active:bg-[#008069] transition-colors shadow-sm flex justify-center items-center gap-1.5">
-                                <svg viewBox="0 0 24 24" width="16" height="16" class="fill-current"><path d="M8 5v14l11-7z"/></svg> Pay Now
-                            </button>
+                        <div class="border-t border-wa-divider flex flex-col bg-white">
+                            <button class="w-full py-2.5 text-wa-metaGreen font-medium text-[15px] active:bg-[#f5f6f6] transition-colors">💳 PAY ₹899</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- System Message: Payment Success -->
                 <div class="mx-auto w-fit bg-[#FFEEDB] text-wa-icon text-[11px] font-medium px-3 py-1.5 rounded-lg shadow-sm my-3 z-10 text-center">
-                    Customer taps WhatsApp Pay button → Pays via Google Pay UPI
+                    Customer taps WhatsApp Pay button → Pays via Google Pay UPI ✅
                 </div>
 
                 <!-- Bot final confirmation -->
@@ -376,12 +370,16 @@
                         <svg viewBox="0 0 8 13" width="8" height="13" class="absolute -left-[8px] top-0 text-wa-incoming fill-current"><path d="M1.533 3.568L8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z"></path></svg>
                         <div class="p-2">
                             <p>✅ <i>Payment Successful! Your order is confirmed!</i> 🎉<br><br>
+                            🧾 <b>Order Confirmation</b><br><br>
                             📦 Order ID - <b>#TBN20482</b><br>
-                            🛖 Product - Boho Rattan Wall Shelf<br>
-                            💰 Amount Paid - <b>₹1,299</b><br>
+                            🌙 Product - Aurora Fancy Night Lamp<br>
+                            💰 Amount Paid - <b>₹899</b><br>
                             📍 Address - 42, Rose Garden Layout, Koramangala, Bangalore - 560034<br>
                             🚚 Estimated Delivery - <b>3-5 business days</b><br><br>
-                            We'll send you a tracking link once your order ships! 🚀</p>
+                            We'll send you a tracking link once your order ships! 🚀<br><br>
+                            Need help anytime? Just type "Support" 💬<br>
+                            Follow us on Instagram for more beautiful finds 🌿<br>
+                            👉 @thebohonest</p>
                             <div class="time-meta">10:44 AM</div>
                             <div class="clear-both"></div>
                         </div>
@@ -422,6 +420,27 @@
             <!-- iPhone Home Indicator -->
             <div class="home-indicator"></div>
 
+        </div>
+    </div>
+</div>
+
+<!-- Right Controls Area -->
+<div class="hidden lg:flex flex-1 flex-col justify-center items-start pl-8 xl:pl-16">
+    <div class="bg-white p-6 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 flex flex-col items-center gap-5 min-w-[180px]">
+        <h3 class="text-gray-800 font-bold text-sm uppercase tracking-widest">Scroll UI</h3>
+        
+        <div class="flex flex-col items-center gap-2 w-full">
+            <label for="scroll-step" class="text-xs text-gray-500 font-semibold uppercase">Step Value (px)</label>
+            <input type="number" id="scroll-step" value="250" class="w-full px-3 py-2 border border-gray-200 bg-gray-50 rounded-xl text-center text-gray-800 font-medium text-base outline-none focus:border-wa-metaGreen focus:ring-2 focus:ring-wa-metaGreen/20 transition-all">
+        </div>
+
+        <div class="flex gap-4 mt-2">
+            <button onclick="scrollChat(-1)" class="bg-white hover:bg-wa-metaGreen hover:text-white text-gray-600 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_4px_14px_0_rgb(0,0,0,0.1)] border border-gray-100" title="Scroll Up">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+            </button>
+            <button onclick="scrollChat(1)" class="bg-white hover:bg-wa-metaGreen hover:text-white text-gray-600 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-[0_4px_14px_0_rgb(0,0,0,0.1)] border border-gray-100" title="Scroll Down">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
         </div>
     </div>
 </div>
@@ -566,6 +585,17 @@
         );
     }
     
+    // Custom Scroll UI Function
+    function scrollChat(direction) {
+        const stepInput = document.getElementById('scroll-step');
+        const stepValue = parseInt(stepInput.value, 10) || 250;
+        
+        chatWindow.scrollBy({
+            top: direction * stepValue,
+            behavior: 'smooth'
+        });
+    }
+
     // Initial scroll
     setTimeout(scrollToBottom, 100);
 </script>
